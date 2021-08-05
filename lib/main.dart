@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterprojectszam/Screens/home_screen.dart';
 import 'utils/const.dart';
+import 'login.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'E-Learning Online Courses App',
       debugShowCheckedModeBanner: false,
       theme: Constants.lightTheme(context),
-      home: HomeScreen(),
+      home: Login(),
     );
   }
 }

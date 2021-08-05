@@ -2,9 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutterprojectszam/Screens/category_screen.dart';
+import 'package:flutterprojectszam/courses/adobexd.dart';
+import 'package:flutterprojectszam/courses/sketch.dart';
+import 'package:flutterprojectszam/courses/uimotion.dart';
 import 'package:flutterprojectszam/utils/const.dart';
 import 'package:flutterprojectszam/widgets/card_courses.dart';
 import 'package:flutterprojectszam/widgets/header.dart';
+import 'package:flutterprojectszam/utils/menuitems.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,21 +44,37 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
+                  color: Colors.white.withOpacity(0.3),
+                ),
                 margin: EdgeInsets.symmetric(
                   horizontal: Constants.mainPadding,
                   vertical: Constants.mainPadding,
                 ),
                 height: 44,
                 width: 44,
-                child: FlatButton(
-                  padding: EdgeInsets.all(0),
-                  color: Colors.white.withOpacity(0.3),
-                  child: Icon(Icons.menu, color: Colors.white),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                child: PopupMenuButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.white.withOpacity(0.3),
                   ),
-                  onPressed: () {
-                    debugPrint('Menu Pressed');
+                  itemBuilder: (BuildContext context) {
+                    return menuitems.map((MenuItems menuitems) {
+                      return PopupMenuItem(
+                        child: ListTile(
+                          leading: Icon(
+                            menuitems.icons,
+                            size: 20,
+                            color: Colors.red,
+                          ),
+                          title: Text(
+                            menuitems.text,
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      );
+                    }).toList();
                   },
                 ),
               ),
@@ -233,41 +253,61 @@ class _HomeScreenState extends State<HomeScreen> {
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   children: [
-                    CardCousres(
-                      image: Image.asset(
-                        "assets/images/icon_1.png",
-                        width: 40,
-                        height: 40,
+                    FlatButton(
+                      child: CardCousres(
+                        image: Image.asset(
+                          "assets/images/icon_1.png",
+                          width: 40,
+                          height: 40,
+                        ),
+                        title: "Adobe XD Prototyping",
+                        hours: "10 hours, 19 lessons",
+                        progress: "25%",
+                        percentage: 0.25,
+                        color: Constants.lightPink,
                       ),
-                      title: "Adobe XD Prototyping",
-                      hours: "10 hours, 19 lessons",
-                      progress: "25%",
-                      percentage: 0.25,
-                      color: Constants.lightPink,
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Adobe()));
+                      },
                     ),
-                    CardCousres(
-                      image: Image.asset(
-                        "assets/images/icon_2.png",
-                        width: 40,
-                        height: 40,
+                    FlatButton(
+                      child: CardCousres(
+                        image: Image.asset(
+                          "assets/images/icon_2.png",
+                          width: 40,
+                          height: 40,
+                        ),
+                        title: "Sketch shortcuts and tricks",
+                        hours: "10 hours, 19 lessons",
+                        progress: "50%",
+                        percentage: 0.5,
+                        color: Constants.yellowLight,
                       ),
-                      title: "Sketch shortcuts and tricks",
-                      hours: "10 hours, 19 lessons",
-                      progress: "50%",
-                      percentage: 0.5,
-                      color: Constants.yellowLight,
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Sketch()));
+                      },
                     ),
-                    CardCousres(
-                      image: Image.asset(
-                        "assets/images/icon_3.png",
-                        width: 40,
-                        height: 40,
+                    FlatButton(
+                      child: CardCousres(
+                        image: Image.asset(
+                          "assets/images/icon_3.png",
+                          width: 40,
+                          height: 40,
+                        ),
+                        title: "UI Motion Design in After Effect",
+                        hours: "10 hours, 19 lessons",
+                        progress: "75%",
+                        percentage: 0.75,
+                        color: Constants.lightViolet,
                       ),
-                      title: "UI Motion Design in After Effect",
-                      hours: "10 hours, 19 lessons",
-                      progress: "75%",
-                      percentage: 0.75,
-                      color: Constants.lightViolet,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UIMotion()));
+                      },
                     ),
                   ],
                 ),
